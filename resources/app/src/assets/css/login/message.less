@@ -1,0 +1,68 @@
+.ui.message {
+  position: relative;
+  min-height: 1em;
+  margin: 1em 0em;
+  background: #F8F8F9;
+  padding: 1em 1.5em;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
+  transition: opacity 0.1s ease, color 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
+  border-radius: 0.28571429rem;
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.22) inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.ui.message:first-child {
+  margin-top: 0em;
+}
+.ui.message:last-child {
+  margin-bottom: 0em;
+}
+
+/*--------------
+     Content
+---------------*/
+
+
+/* Header */
+.ui.message .header {
+  display: block;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin: -0.14285em 0em 0rem 0em;
+}
+
+/* Default font size */
+.ui.message .header:not(.ui) {
+  font-size: 1.14285714em;
+}
+
+/* Paragraph */
+.ui.message p {
+  opacity: 0.85;
+  margin: 0.75em 0em;
+}
+.ui.message p:first-child {
+  margin-top: 0em;
+}
+.ui.message p:last-child {
+  margin-bottom: 0em;
+}
+.ui.message .header + p {
+  margin-top: 0.25em;
+}
+
+/*--------------
+     Types
+---------------*/
+/* Error */
+.ui.error.message {
+  background-color: #FFF6F6;
+  color: #9F3A38;
+}
+.ui.error.message,
+.ui.attached.error.message {
+  box-shadow: 0px 0px 0px 1px #E0B4B4 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.ui.error.message .header {
+  color: #912D2B;
+}

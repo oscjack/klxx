@@ -1,0 +1,200 @@
+/*--------------------
+        Form
+---------------------*/
+
+.ui.form {
+  position: relative;
+  max-width: 100%;
+}
+
+/*--------------------
+        Content
+---------------------*/
+
+.ui.form > p {
+  margin: 1em 0em;
+}
+
+/*--------------------
+        Field
+---------------------*/
+
+.ui.form .field {
+  clear: both;
+  margin: 0em 0em 1em;
+}
+.ui.form .field:last-child,
+.ui.form .fields:last-child .field {
+  margin-bottom: 0em;
+}
+.ui.form .fields .field {
+  clear: both;
+  margin: 0em;
+}
+
+/*--------------------
+        Labels
+---------------------*/
+
+.ui.form .field > label {
+  display: block;
+  margin: 0em 0em 0.28571429rem 0em;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.92857143em;
+  font-weight: bold;
+  text-transform: none;
+}
+
+/*--------------------
+    Standard Inputs
+---------------------*/
+
+.ui.form textarea,
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="time"],
+.ui.form input[type="text"],
+.ui.form input[type="url"] {
+  width: 100%;
+  vertical-align: top;
+}
+
+/* Set max height on unusual input */
+.ui.form ::-webkit-datetime-edit,
+.ui.form ::-webkit-inner-spin-button {
+  height: 1.2142em;
+}
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="time"],
+.ui.form input[type="text"],
+.ui.form input[type="url"] {
+  margin: 0em;
+  outline: none;
+  -webkit-appearance: none;
+  tap-highlight-color: rgba(255, 255, 255, 0);
+  line-height: 1.2142em;
+  padding: 0.67861429em 1em;
+  font-size: 1em;
+  background: #FFFFFF;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0.28571429rem;
+  box-shadow: 0em 0em 0em 0em transparent inset;
+  -webkit-transition: color 0.1s ease, border-color 0.1s ease;
+  transition: color 0.1s ease, border-color 0.1s ease;
+}
+
+/*--------------------
+   Types of Messages
+---------------------*/
+
+.ui.form .success.message,
+.ui.form .warning.message,
+.ui.form .error.message {
+  display: none;
+}
+
+/* Assumptions */
+.ui.form .message:first-child {
+  margin-top: 0px;
+}
+
+/*--------------------
+        Focus
+---------------------*/
+
+.ui.form input:not([type]):focus,
+.ui.form input[type="date"]:focus,
+.ui.form input[type="datetime-local"]:focus,
+.ui.form input[type="email"]:focus,
+.ui.form input[type="number"]:focus,
+.ui.form input[type="password"]:focus,
+.ui.form input[type="search"]:focus,
+.ui.form input[type="tel"]:focus,
+.ui.form input[type="time"]:focus,
+.ui.form input[type="text"]:focus,
+.ui.form input[type="url"]:focus {
+  color: rgba(0, 0, 0, 0.95);
+  border-color: @accent-color;
+  border-radius: 0.28571429rem;
+  background: #FFFFFF;
+  box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
+}
+.ui.form textarea:focus {
+  color: rgba(0, 0, 0, 0.95);
+  border-color: #85B7D9;
+  border-radius: 0.28571429rem;
+  background: #FFFFFF;
+  box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
+  -webkit-appearance: none;
+}
+
+/*--------------------
+        Success
+---------------------*/
+
+
+/* On Form */
+.ui.form.success .success.message:not(:empty) {
+  display: block;
+}
+.ui.form.success .compact.success.message:not(:empty) {
+  display: inline-block;
+}
+.ui.form.success .icon.success.message:not(:empty) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/*--------------------
+        Warning
+---------------------*/
+
+
+/* On Form */
+.ui.form.warning .warning.message:not(:empty) {
+  display: block;
+}
+.ui.form.warning .compact.warning.message:not(:empty) {
+  display: inline-block;
+}
+.ui.form.warning .icon.warning.message:not(:empty) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/*--------------------
+        Error
+---------------------*/
+
+
+/* On Form */
+.ui.form.error .error.message:not(:empty) {
+  display: block;
+}
+.ui.form.error .compact.error.message:not(:empty) {
+  display: inline-block;
+}
+.ui.form.error .icon.error.message:not(:empty) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}

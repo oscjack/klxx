@@ -1,0 +1,42 @@
+---
+ip: "192.168.1.8"
+memory: 2048
+cpus: 2
+hostname: klxx
+name: klxx
+provider: virtualbox
+box: 'ubuntu/xenial64'
+
+authorize: ~/.ssh/waring3yin.pub
+
+keys:
+    - ~/.ssh/ocaddons
+
+folders:
+    - map: /Users/jackyin/development/phpmyadmin
+      to: /var/www/phpmyadmin
+      owner: ubuntu
+      group: www-data
+
+    - map: .
+      to: /var/www/klxx
+      owner: ubuntu
+      group: 'www-data'
+
+    - map: ./bootstrap/cache
+      to: /var/www/klxx/bootstrap/cache
+      owner: ubuntu
+      group: 'www-data'
+      writable: 'yes'
+
+    - map: ./storage
+      to: /var/www/klxx/storage
+      owner: ubuntu
+      group: 'www-data'
+      writable: 'yes'
+sites:
+    - map: klxx.com
+      to: /var/www/klxx/public
+
+    - map: klxxdb.me
+      to: /var/www/phpmyadmin
