@@ -1,9 +1,9 @@
-import resetPasswordPage from 'pages/resetPasswordPage';
+import resetPasswordPage from 'pages/ResetPasswordPage';
 import dashboardPage from 'pages/DashboardPage';
 
 import customersPage from 'pages/CustomersPage';
 import addCustomerPage from 'pages/AddCustomerPage';
-import editCustomerPage from 'pages/editCustomerPage';
+import editCustomerPage from 'pages/EditCustomerPage';
 
 import productsPage from 'pages/ProductsPage';
 import addProductPage from 'pages/AddProductPage';

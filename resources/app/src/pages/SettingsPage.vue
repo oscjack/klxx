@@ -1,7 +1,7 @@
 <script>
 import forEach from 'lodash/forEach';
 import headerBar from 'components/HeaderBar';
-import page from 'pages/page';
+import page from 'pages/Page';
 import segment from 'components/Segment';
 
 const data = () => {

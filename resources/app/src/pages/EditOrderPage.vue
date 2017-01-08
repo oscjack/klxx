@@ -1,7 +1,7 @@
 <script>
 import findIndex from 'lodash/findIndex';
 import headerBar from 'components/HeaderBar';
-import page from 'pages/page';
+import page from 'pages/Page';
 import segment from 'components/Segment';
 import pagination from 'components/Pagination';
 

@@ -1,6 +1,6 @@
 <script>
 import headerBar from 'components/HeaderBar';
-import page from 'pages/page';
+import page from 'pages/Page';
 import segment from 'components/Segment';
 import customerForm from 'components/CustomerForm';
 
