@@ -108,8 +108,7 @@ export default {
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}元</td>
                         <td>{{ product.model }}</td>
-                        <td v-if="product.stock_qty" :class="setStockState(product.stock_qty)">{{ product.stock_qty}}件</td>
-                        <td v-else></td>
+                        <td :class="setStockState(product.stock_qty)">{{ product.stock_qty}}</td>
                         <td>{{ product.description }}</td>
 
                         <td class="center aligned">

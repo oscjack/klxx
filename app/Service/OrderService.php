@@ -129,7 +129,13 @@ class OrderService
         $records = [];
         foreach ($products as $product) {
             $p = Product::find($product['id']);
-            $p->stock_qty -= $product['qty'];
+
+            if ($p->stock_qty >= $product['qty']) {
+                $p->stock_qty -= $product['qty'];
+            }else {
+                $p->stock_qty = 0;
+            }
+
             $p->save();
 
             $records[] = [
