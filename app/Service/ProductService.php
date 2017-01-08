@@ -4,7 +4,7 @@ namespace App\Service;
 
 use InvalidArgumentException;
 use App\Product;
-use App\OrderProducts;
+use App\OrderProduct;
 
 class ProductService
 {
@@ -59,7 +59,7 @@ class ProductService
             throw new InvalidArgumentException('产品价格不能为空.');
         }
 
-        $order_product = OrderProducts::where('products_id', $this->product_id)->first();
+        $order_product = OrderProduct::where('product_id', $this->product_id)->first();
 
         if ($order_product) {
             throw new InvalidArgumentException('产品有相关的货单记录，故不能删除.');

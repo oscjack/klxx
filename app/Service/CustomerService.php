@@ -59,7 +59,7 @@ class CustomerService
             throw new InvalidArgumentException('客户电话不能为空.');
         }
 
-        $order = Order::where('customers_id', $this->customer_id)->first();
+        $order = Order::where('customer_id', $this->customer_id)->first();
 
         if ($order) {
             throw new InvalidArgumentException('客户有货单记录，不能删除.');
