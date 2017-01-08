@@ -17,11 +17,25 @@ class OrderService
         $this->order_id= $order_id;
     }
 
-    public function lists()
+    public function lists($customer_id = 0, $status = 'none')
     {
-        $orders = DB::table('orders')
+        $query = DB::table('orders')
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
-            ->select('orders.*', 'customers.name as customer')
+            ->select('orders.*', 'customers.name as customer');
+
+        if ($customer_id) {
+            $query->where('customers.id', $customer_id);
+        }
+
+        if (in_array($status, [
+            'pending',
+            'paid',
+            'sending',
+            'received'])) {
+            $query->where('orders.status', $status);
+        }
+
+        $orders = $query
             ->orderBy('orders.created_at', 'desc')
             ->paginate(PAGE_ITEMS);
 

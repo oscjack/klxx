@@ -15,11 +15,14 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $service = new OrderService();
 
-        $orders = $service->lists();
+        $orders = $service->lists(
+            $request->input('customer_id'),
+            $request->input('status')
+        );
 
         return response()->json($orders);
     }
