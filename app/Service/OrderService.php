@@ -114,6 +114,10 @@ class OrderService
 
         $records = [];
         foreach ($products as $product) {
+            $p = Product::find($product['id']);
+            $p->stock_qty -= $product['qty'];
+            $p->save();
+
             $records[] = [
                 'order_id' => $order_id,
                 'product_id' => $product['id'],
