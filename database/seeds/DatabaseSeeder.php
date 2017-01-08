@@ -64,12 +64,12 @@ class DatabaseSeeder extends Seeder
 
             [
                 'key' => 'CUSTOMER_MESSAGE',
-                'value' => '祝新老客户生意兴隆...'
+                'value' => '祝新老客户生意兴隆。益喜宝贝，柯炜王子，快乐兴兴精品童裤永远支持你，谢谢合作！'
             ],
 
             [
                 'key' => 'SALED_MESSAGE',
-                'value' => '货物如有质量问题...'
+                'value' => '货物如有质量问题：本省7天，外省15天内持本货单调换，尔后自负。'
             ]
         ]);
     }
