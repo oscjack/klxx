@@ -174,6 +174,7 @@ export default {
                         <th>客户</th>
                         <th>总金额</th>
                         <th>已付款</th>
+                        <th>欠款</th>
                         <th>状态</th>
                         <th>日期</th>
                         <th>操作</th>
@@ -185,7 +186,8 @@ export default {
                         <td>#{{ order.id }}</td>
                         <td>{{ order.customer }}</td>
                         <td>{{ order.total }}元</td>
-                        <td>{{ order.paid }}元</td>
+                        <td :class="{'text-success': order.total - order.paid == 0}">{{ order.paid }}元</td>
+                        <td :class="{'text-danger': order.total - order.paid > 0}">{{ order.total - order.paid}}元</td>
                         <td :class="getStatusColor(order.status)">{{ statusText(order.status) }}</td>
                         <td>{{ order.created_at }}</td>
 
