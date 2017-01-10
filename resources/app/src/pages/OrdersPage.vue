@@ -222,7 +222,7 @@ export default {
 
             <div class="filters">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-right">
                         <label>客户: </label>
 
                         <select v-model="filterCustomerId">
@@ -232,7 +232,7 @@ export default {
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-right">
                         <label>状态: </label>
 
                         <select v-model="filterStatus">
@@ -265,8 +265,8 @@ export default {
                 .filters {
                     position: absolute;
                     top:0;
-                    right:0;
-                    width: 600px;
+                    right:15px;
+                    width: 500px;
                     height:40px;
 
                     .row {
@@ -278,7 +278,7 @@ export default {
                     }
 
                     select {
-                        width: 80%;
+                        width: 150px;
                         height: 30px;
                     }
                 }
