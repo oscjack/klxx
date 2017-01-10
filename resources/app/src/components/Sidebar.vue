@@ -5,10 +5,11 @@ const data = () => {
     return {
         menus: [
             {icon: 'home', link: '/dashboard', text: '首页', actived: false},
-            {icon: 'tags', link: '/products', text: '产品管理', actived: false},
-            {icon: 'users', link: '/customers', text: '客户管理', actived: false},
-            {icon: 'file text', link: '/orders', text: '货单管理', actived: false},
-            {icon: 'setting', link: '/settings', text: '货单设置', actived: false}
+            {icon: 'tags', link: '/products', text: '产品', actived: false},
+            {icon: 'users', link: '/customers', text: '客户', actived: false},
+            {icon: 'file text', link: '/orders', text: '货单', actived: false},
+            {icon: 'yen', link: '/invoices', text: '账单', actived: false},
+            {icon: 'setting', link: '/settings', text: '设置', actived: false}
         ]
     };
 };
@@ -124,6 +125,10 @@ export default {
 
         i.icon {
             font-size: 16px;
+        }
+
+        .ui.list .list > .item > i.icon, .ui.list > .item > i.icon {
+            padding-right:0;
         }
 
         .ui.list .list > .item a.header, .ui.list > .item a.header {

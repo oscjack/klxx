@@ -16,7 +16,7 @@ const data = () => {
         customers: [],
 
         statuses: [
-            {name: '无', value: 'none'},
+            {name: '全部', value: 'none'},
             {name: '待付款', value: 'pending'},
             {name: '已付款', value: 'paid'},
             {name: '发货中', value: 'sending'},
@@ -222,17 +222,17 @@ export default {
 
             <div class="filters">
                 <div class="row">
-                    <div class="col-md-6 text-right">
+                    <div class="col-md-7 text-right">
                         <label>客户: </label>
 
                         <select v-model="filterCustomerId">
-                            <option value="0">无</option>
+                            <option value="0">全部</option>
                             <option v-bind:value="customer.id" v-for="customer of customers">
                                 {{ customer.name }}
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-6 text-right">
+                    <div class="col-md-5 text-right">
                         <label>状态: </label>
 
                         <select v-model="filterStatus">
