@@ -42,6 +42,20 @@ class OrderService
         return $orders;
     }
 
+    public function all($customer_id)
+    {
+        $query = DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->select('orders.*', 'customers.name as customer')
+            ->where('customers.id', $customer_id);
+
+        $orders = $query
+            ->orderBy('orders.created_at', 'desc')
+            ->get();
+
+        return $orders;
+    }
+
     public function detail()
     {
         $result = [];

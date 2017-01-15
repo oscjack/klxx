@@ -246,7 +246,7 @@ export default {
                 </div>
             </div>
 
-             <pagination :total="totalPages" v-on:active="activePage" visible="10"></pagination>
+            <pagination :total="totalPages" v-on:active="activePage" visible="10"></pagination>
         </segment>
     </page>
 </div>

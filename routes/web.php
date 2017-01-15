@@ -41,3 +41,8 @@ Route::get('/order/info/{id}', 'OrderController@info');
 //settings
 Route::get('/settings', 'SettingController@index');
 Route::post('/setting/save', 'SettingController@save');
+
+//invoices
+Route::get('/invoices', 'InvoiceController@index');
+Route::get('/invoice/orders', 'InvoiceController@orders');
+Route::get('/invoice/info/{id}', 'InvoiceController@info');

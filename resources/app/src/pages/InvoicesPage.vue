@@ -14,13 +14,17 @@ const data = () => {
 
         filterCustomerId: 0,
         customers: [],
+        activedCustomerId: null,
+
+        orders: [],
+        currentOrderPage: 1,
+        totalOrderPages: 1,
 
         statuses: [
-            {name: '全部', value: 'none'},
             {name: '有欠款', value: 'pending'},
             {name: '已结清', value: 'paid'}
         ],
-        filterStatus: 'none'
+        filterStatus: 0
     }
 };
 
@@ -51,9 +55,34 @@ const methods = {
         });
     },
 
+    loadDetail(customerId) {
+        this.loadingDetail = true;
+        this.activedCustomerId = customerId;
+
+        this.$http.get('invoice/orders', {
+            params: {
+                page: this.currentOrderPage,
+                customer_id: customerId,
+            }
+        }).then(response => {
+            let res = response.data;
+
+            this.orders = res.data;
+            this.currentOrderPage = res.current_page;
+            this.totalOrderPages = Math.ceil(res.total/res.per_page);
+        }).finally(() => {
+            this.loadingDetail = false;
+        });
+    },
+
     activePage(page) {
         this.currentPage = page;
         this.load();
+    },
+
+    activeOrderPage(page) {
+        this.currentOrderPage = page;
+        this.loadDetail(this.activedCustomerId);
     },
 
     getInfoHref(customerId) {
@@ -61,14 +90,14 @@ const methods = {
     },
 
     getStatusColor(invoice) {
-        let debt = nvoice.total - invoice.paid;
+        let debt = invoice.total_sales - invoice.total_paid;
 
         if (debt > 0) {
-            return 'text-danger';
+            return 'negative';
         }
 
         if (debt == 0) {
-            return 'text-success';
+            return 'positive';
         }
     }
 };
@@ -110,72 +139,107 @@ export default {
     <header-bar title="账单统计"></header-bar>
 
     <page>
-        <segment :show-loader="loadingList" class="clearfix">
-            <div class="ui dividing header">账单列表</div>
+        <div class="row">
+            <div class="col-md-6">
+                <segment :show-loader="loadingList" class="clearfix">
+                    <div class="ui dividing header">账单列表</div>
 
-            <table class="ui celled table" v-if="orders.length > 0">
-                <thead>
-                    <tr>
-                        <th>客户</th>
-                        <th>应收</th>
-                        <th>实收</th>
-                        <th>欠款</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
+                    <table class="ui celled table" v-if="invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th>客户</th>
+                                <th>应收</th>
+                                <th>实收</th>
+                                <th>欠款</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
 
-                <tbody>
-                    <tr v-for="invoice in invoices" :class="getStatusColor(invoice)">
-                        <td>{{ invoice.customer }}</td>
-                        <td>{{ invoice.total }}元</td>
-                        <td>{{ invoice.paid }}元</td>
-                        <td>{{ invoice.total - invoice.paid }}元</td>
+                        <tbody>
+                            <tr
+                                class="invoice-item"
+                                v-for="invoice in invoices"
+                                :class="getStatusColor(invoice)"
+                                @click="loadDetail(invoice.customer_id)">
+                                <td>{{ invoice.customer }}</td>
+                                <td>{{ invoice.total_sales }}元</td>
+                                <td>{{ invoice.total_paid }}元</td>
+                                <td>{{ invoice.total_sales - invoice.total_paid }}元</td>
 
-                        <td class="center aligned">
-                            <router-link :to="{ name: 'order-products', params: order}">
-                                <button class="ui tiny circular green icon button">
-                                    <i class="icon list"></i>明细
-                                </button>
-                            </router-link>
+                                <td class="center aligned">
+                                    <a class="ui tiny blue print circular icon button" :href="getInfoHref(invoice.customer_id)" target="_blank">
+                                        <i class="icon print"></i>打印
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                            <a class="ui tiny blue print circular icon button" :href="getInfoHref(invoice.customer_id)" target="_blank">
-                                <i class="icon print"></i>打印
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                    <div class="ui info message" v-else>
+                        暂无任何账单数据。
+                    </div>
 
-            <div class="ui info message" v-else>
-                暂无任何账单数据。
+                    <div class="filters">
+                        <div class="row">
+                            <div class="col-md-7 text-right">
+                                <select v-model="filterCustomerId">
+                                    <option value="0">全部客户</option>
+                                    <option v-bind:value="customer.id" v-for="customer of customers">
+                                        {{ customer.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-5 text-right">
+                                <select v-model="filterStatus">
+                                    <option value="0">全部状态</option>
+                                    <option v-bind:value="status.value" v-for="status of statuses">
+                                        {{ status.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                     <pagination :total="totalPages" v-on:active="activePage" visible="10"></pagination>
+                </segment>
             </div>
 
-            <div class="filters">
-                <div class="row">
-                    <div class="col-md-7 text-right">
-                        <label>客户: </label>
+            <div class="col-md-6">
+                <segment :show-loader="loadingDetail" class="clearfix">
+                    <div class="ui dividing header">货单列表</div>
 
-                        <select v-model="filterCustomerId">
-                            <option value="0">全部</option>
-                            <option v-bind:value="customer.id" v-for="customer of customers">
-                                {{ customer.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-md-5 text-right">
-                        <label>状态: </label>
+                    <table class="ui celled table" v-if="orders.length > 0">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>客户</th>
+                                <th>金额</th>
+                                <th>已付</th>
+                                <th>欠款</th>
+                                <th>日期</th>
+                            </tr>
+                        </thead>
 
-                        <select v-model="filterStatus">
-                            <option v-bind:value="status.value" v-for="status of statuses">
-                                {{ status.name }}
-                            </option>
-                        </select>
+                        <tbody>
+                            <tr v-for="order in orders">
+                                <td>#{{ order.id }}</td>
+                                <td>{{ order.customer }}</td>
+                                <td>{{ order.total }}元</td>
+                                <td>{{ order.paid }}元</td>
+                                <td :class="{'text-danger': order.total - order.paid > 0}">{{ order.total - order.paid}}元</td>
+                                <td width="120">{{ order.created_at }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="ui info message" v-else>
+                        点击左边账单行，相关的货单列表会显示在这儿。
                     </div>
-                </div>
+
+                    <pagination :total="totalOrderPages" v-on:active="activeOrderPage" visible="10"></pagination>
+                </segment>
             </div>
-
-             <pagination :total="totalPages" v-on:active="activePage" visible="10"></pagination>
-        </segment>
+        </div>
     </page>
 </div>
 </template>
@@ -194,9 +258,9 @@ export default {
 
                 .filters {
                     position: absolute;
-                    top:0;
+                    top:5px;
                     right:15px;
-                    width: 500px;
+                    width: 300px;
                     height:40px;
 
                     .row {
@@ -208,10 +272,14 @@ export default {
                     }
 
                     select {
-                        width: 150px;
-                        height: 30px;
+                        width: 100px;
+                        height: 25px;
                     }
                 }
+            }
+
+            .invoice-item {
+                cursor: pointer;
             }
         }
     }

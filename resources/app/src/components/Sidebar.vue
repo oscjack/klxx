@@ -8,7 +8,7 @@ const data = () => {
             {icon: 'tags', link: '/products', text: '产品', actived: false},
             {icon: 'users', link: '/customers', text: '客户', actived: false},
             {icon: 'file text', link: '/orders', text: '货单', actived: false},
-            // {icon: 'yen', link: '/invoices', text: '账单', actived: false},
+            {icon: 'yen', link: '/invoices', text: '账单', actived: false},
             {icon: 'setting', link: '/settings', text: '设置', actived: false}
         ]
     };
