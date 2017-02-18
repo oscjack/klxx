@@ -56,7 +56,7 @@ export default {
 <div class="add-customer-page">
     <header-bar title="客户管理／添加客户">
         <div slot="actions">
-            <button class="basic ui tiny green button" @click="save()">
+            <button class="ui tiny green button" @click="save()">
                 <i class="icon save"></i>保存
             </button>
         </div>

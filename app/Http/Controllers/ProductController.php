@@ -19,6 +19,11 @@ class ProductController extends Controller
         return Product::paginate(PAGE_ITEMS);
     }
 
+    public function all()
+    {
+        return Product::all();
+    }
+
     public function save(Request $request)
     {
         $service = new ProductService($request->input('id'));
@@ -29,6 +34,7 @@ class ProductController extends Controller
                 'description' => $request->input('description'),
                 'model' => $request->input('model'),
                 'price' => $request->input('price'),
+                'fee' => $request->input('fee'),
                 'stock_qty' => $request->input('stock_qty')
             ]);
 

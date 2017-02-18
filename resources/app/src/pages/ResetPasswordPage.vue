@@ -49,7 +49,7 @@ export default {
     <header-bar title="修改管理员密码">
         <button
             slot="actions"
-            class="basic ui tiny green button"
+            class="ui tiny green button"
             @click="save()">
             <i class="icon save"></i> 保存
         </button>

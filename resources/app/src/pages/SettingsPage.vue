@@ -148,7 +148,7 @@ export default {
 <div class="settings-page">
     <header-bar title="系统设置">
         <div slot="actions">
-            <button class="basic ui tiny green button" @click="save()">
+            <button class="ui tiny green button" @click="save()">
                 <i class="icon save"></i>保存
             </button>
         </div>

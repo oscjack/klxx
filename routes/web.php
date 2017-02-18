@@ -28,6 +28,7 @@ Route::post('/customer/remove', 'CustomerController@remove');
 
 //products
 Route::get('/products', 'ProductController@index');
+Route::get('/products/all', 'ProductController@all');
 Route::post('/product/save', 'ProductController@save');
 Route::post('/product/remove', 'ProductController@remove');
 
@@ -46,3 +47,14 @@ Route::post('/setting/save', 'SettingController@save');
 Route::get('/invoices', 'InvoiceController@index');
 Route::get('/invoice/orders', 'InvoiceController@orders');
 Route::get('/invoice/info/{id}', 'InvoiceController@info');
+
+//workers
+Route::get('/workers', 'WorkerController@index');
+Route::post('/worker/create', 'WorkerController@save');
+Route::post('/worker/remove', 'WorkerController@remove');
+Route::post('/worker/update', 'WorkerController@save');
+
+//jobs
+Route::get('/jobs', 'JobController@index');
+Route::post('/job/add', 'JobController@save');
+Route::post('/job/remove', 'JobController@remove');

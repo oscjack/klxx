@@ -27,6 +27,7 @@ class ProductService
 
         $product->name = $data['name'];
         $product->price = $data['price'];
+        $product->fee = $data['fee'];
         $product->model = $data['model'] ?: null;
         $product->stock_qty = $data['stock_qty'] ?: null;
         $product->description = $data['description'] ?: null;
@@ -40,6 +41,12 @@ class ProductService
     {
         try {
             $product = Product::find($this->product_id);
+
+            $order_product = OrderProduct::where('product_id', $this->product_id)->first();
+
+            if ($order_product) {
+                throw new InvalidArgumentException('产品有相关的货单记录，故不能删除.');
+            }
 
             if ( ! $product->delete()) {
                 throw new InvalidArgumentException('失败：不能删除该用户');
@@ -59,10 +66,5 @@ class ProductService
             throw new InvalidArgumentException('产品价格不能为空.');
         }
 
-        $order_product = OrderProduct::where('product_id', $this->product_id)->first();
-
-        if ($order_product) {
-            throw new InvalidArgumentException('产品有相关的货单记录，故不能删除.');
-        }
     }
 }

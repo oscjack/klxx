@@ -43,6 +43,15 @@ export default {
             placeholder="输入产品单价" />
     </div>
 
+    <div class="required field">
+        <label>加工费(单件)</label>
+        <input
+            type="text"
+            v-bind:value="value.fee"
+            v-on:input="update($event.target.value, 'fee')"
+            placeholder="输入加工费单价" />
+    </div>
+
     <div class="field">
         <label>规格 (选填)</label>
         <input

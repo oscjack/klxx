@@ -156,7 +156,7 @@ export default {
     <header-bar title="货单管理">
         <div slot="actions">
             <router-link to="/order/add">
-                <button class="basic ui tiny green button">
+                <button class="ui tiny green button">
                     <i class="icon add"></i>添加
                 </button>
             </router-link>

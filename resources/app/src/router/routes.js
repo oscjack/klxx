@@ -17,6 +17,8 @@ import orderProductsPage from 'pages/OrderProductsPage';
 import settingsPage from 'pages/SettingsPage';
 import invoicesPage from 'pages/InvoicesPage';
 
+import workersPage from 'pages/WorkersPage';
+
 const routes = [{
     path: '/dashboard',
     name: 'dashboard',
@@ -74,9 +76,9 @@ const routes = [{
     name: 'invoices',
     component: invoicesPage
 }, {
-    path: '/invoice/orders',
-    name: 'invoice-orders',
-    component: {}
+    path: '/workers',
+    name: 'workers',
+    component: workersPage
 }]
 
 export default routes

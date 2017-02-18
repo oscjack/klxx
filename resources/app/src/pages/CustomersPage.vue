@@ -76,7 +76,7 @@ export default {
     <header-bar title="客户管理">
         <div slot="actions">
             <router-link to="/customer/add">
-                <button class="basic ui tiny green button">
+                <button class="ui tiny green button">
                     <i class="icon add"></i>添加
                 </button>
             </router-link>

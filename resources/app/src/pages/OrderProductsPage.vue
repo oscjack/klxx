@@ -63,7 +63,7 @@ export default {
 <div class="customers-page">
     <header-bar title="货单管理／订购产品列表">
         <div slot="actions">
-            <a class="basic ui print tiny green button" :href="printHref()" target="_blank">
+            <a class="ui print tiny green button" :href="printHref()" target="_blank">
                 <i class="icon print"></i>打印
             </a>
         </div>

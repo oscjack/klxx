@@ -12,6 +12,7 @@ const data = () => {
             name: null,
             model: null,
             price: null,
+            fee: null,
             stock_qty: null,
             description: null
         }

@@ -82,7 +82,7 @@ export default {
     <header-bar title="产品管理">
         <div slot="actions">
             <router-link to="/product/add">
-                <button class="basic ui tiny green button">
+                <button class="ui tiny green button">
                     <i class="icon add"></i>添加
                 </button>
             </router-link>
@@ -98,6 +98,7 @@ export default {
                         <th>价格</th>
                         <th>规格</th>
                         <th>库存</th>
+                        <th>加工费(单件)</th>
                         <th>描述</th>
                         <th>操作</th>
                     </tr>
@@ -109,6 +110,7 @@ export default {
                         <td>{{ product.price }}元</td>
                         <td>{{ product.model }}</td>
                         <td :class="setStockState(product.stock_qty)">{{ product.stock_qty}}</td>
+                        <td>{{ product.fee }}元</td>
                         <td>{{ product.description }}</td>
 
                         <td class="center aligned">

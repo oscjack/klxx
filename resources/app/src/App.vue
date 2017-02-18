@@ -29,23 +29,23 @@ const methods = {
 
             next((response) => {
                 let type = null;
-                let text = null;
+                let message = null;
 
                 if ( ! response.ok) {
                     type = 'error';
-                    text = '服务器处理错误...';
+                    message = '服务器处理错误...';
                 }else if (! response.data.success) {
                     type = 'error';
-                    text = response.data.feedback;
+                    message = response.data.feedback;
                 }else {
                     type = 'success';
-                    text = response.data.feedback;
+                    message = response.data.feedback;
                 }
 
-                if (type && text) {
-                    this.setMessage({
+                if (type && message) {
+                    this.$message({
                         type,
-                        text
+                        message
                     });
                 }
             });

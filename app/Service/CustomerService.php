@@ -41,6 +41,12 @@ class CustomerService
         try {
             $customer = Customer::find($this->customer_id);
 
+            $order = Order::where('customer_id', $this->customer_id)->first();
+
+            if ($order) {
+                throw new InvalidArgumentException('客户有货单记录，不能删除.');
+            }
+
             if ( ! $customer->delete()) {
                 throw new InvalidArgumentException('失败：不能删除改用户');
             }
@@ -57,12 +63,6 @@ class CustomerService
 
         if (empty($data['telephone'])) {
             throw new InvalidArgumentException('客户电话不能为空.');
-        }
-
-        $order = Order::where('customer_id', $this->customer_id)->first();
-
-        if ($order) {
-            throw new InvalidArgumentException('客户有货单记录，不能删除.');
         }
     }
 }

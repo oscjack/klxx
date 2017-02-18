@@ -7,6 +7,12 @@ import 'vue-material/dist/components/mdCore/index.css';
 import 'vue-material/dist/components/mdRadio/index.css';
 import 'vue-material/dist/components/mdCheckbox/index.css';
 
+//element ui
+import ElementUI from 'element-ui'
+import locale from 'element-ui/src/locale/lang/en'
+
+Vue.use(ElementUI, { locale })
+
 import store from './store';
 import router from './router';
 
