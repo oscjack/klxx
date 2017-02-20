@@ -7,6 +7,7 @@ use InvalidArgumentException;
 
 use App\Service\OrderService;
 use App;
+use App\Order;
 
 class OrderController extends Controller
 {
