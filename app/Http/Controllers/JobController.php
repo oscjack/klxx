@@ -24,6 +24,33 @@ class JobController extends Controller
         return $service->findByMonth($worker_id, $month);
     }
 
+    public function update(Request $request)
+    {
+        $service = new JobService($request->input('id'));
+
+        try {
+            $service->save([
+                'product_id' => $request->input('productId'),
+                'worker_id' => $request->input('workerId'),
+                'quantity' => $request->input('quantity'),
+                'month' => $request->input('month'),
+                'day' => $request->input('day')
+            ]);
+
+            $response = [
+                'success' => true,
+                'feedback' => '成功：人工费用已保存'
+            ];
+        }catch (InvalidArgumentException $e) {
+            $response = [
+                'success' => false,
+                'feedback' => $e->getMessage()
+            ];
+        }
+
+        return response()->json($response);
+    }
+
     public function save(Request $request)
     {
         $service = new JobService($request->input('id'));
@@ -32,6 +59,8 @@ class JobController extends Controller
             $service->save([
                 'product_id' => $request->input('productId'),
                 'worker_id' => $request->input('workerId'),
+                'month' => $request->input('month'),
+                'day' => $request->input('day'),
                 'quantity' => $request->input('quantity')
             ]);
 

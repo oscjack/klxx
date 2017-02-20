@@ -89,7 +89,7 @@
                 </table>
 
                 <div class="ui info message" v-else>
-                    月度人工费统计暂没处理，这块有时间再加进去。
+                    年度人工费统计暂没处理，这块有时间再加进去。
                 </div>
             </el-tab-pane>
         </el-tabs>
@@ -111,6 +111,67 @@
             <div class="required field">
                 <label>数量</label>
                 <input type="text" v-model="newJob.quantity" placeholder="输入数量" />
+            </div>
+
+            <div class="required field">
+                <label>日期</label>
+
+                <div class="two fields">
+                    <div class="required field">
+                        <select v-model="newJob.month">
+                            <option value="0">月</option>
+                            <option value="1">一月</option>
+                            <option value="2">二月</option>
+                            <option value="3">三月</option>
+                            <option value="4">四月</option>
+                            <option value="5">五月</option>
+                            <option value="6">六月</option>
+                            <option value="7">七月</option>
+                            <option value="8">八月</option>
+                            <option value="9">九月</option>
+                            <option value="10">十月</option>
+                            <option value="11">十一月</option>
+                            <option value="12">十二月</option>
+                          </select>
+                    </div>
+
+                    <div class="required field">
+                        <select v-model="newJob.day">
+                            <option value="0">日</option>
+                            <option value="1">1号</option>
+                            <option value="2">2号</option>
+                            <option value="3">3号</option>
+                            <option value="4">4号</option>
+                            <option value="5">5号</option>
+                            <option value="6">6号</option>
+                            <option value="7">7号</option>
+                            <option value="8">8号</option>
+                            <option value="9">9号</option>
+                            <option value="10">10号</option>
+                            <option value="11">11号</option>
+                            <option value="12">12号</option>
+                            <option value="13">13号</option>
+                            <option value="14">14号</option>
+                            <option value="15">15号</option>
+                            <option value="16">16号</option>
+                            <option value="17">17号</option>
+                            <option value="18">18号</option>
+                            <option value="19">19号</option>
+                            <option value="20">20号</option>
+                            <option value="21">21号</option>
+                            <option value="22">22号</option>
+                            <option value="23">23号</option>
+                            <option value="24">24号</option>
+                            <option value="25">25号</option>
+                            <option value="26">26号</option>
+                            <option value="27">27号</option>
+                            <option value="28">28号</option>
+                            <option value="29">29号</option>
+                            <option value="30">30号</option>
+                            <option value="31">31号</option>
+                          </select>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -135,6 +196,67 @@
             <div class="required field">
                 <label>数量</label>
                 <input type="text" v-model="currentJob.quantity" placeholder="输入数量" />
+            </div>
+
+            <div class="required field">
+                <label>日期</label>
+
+                <div class="two fields">
+                    <div class="required field">
+                        <select v-model="currentJob.month">
+                            <option value="0">月</option>
+                            <option value="1">一月</option>
+                            <option value="2">二月</option>
+                            <option value="3">三月</option>
+                            <option value="4">四月</option>
+                            <option value="5">五月</option>
+                            <option value="6">六月</option>
+                            <option value="7">七月</option>
+                            <option value="8">八月</option>
+                            <option value="9">九月</option>
+                            <option value="10">十月</option>
+                            <option value="11">十一月</option>
+                            <option value="12">十二月</option>
+                          </select>
+                    </div>
+
+                    <div class="required field">
+                        <select v-model="currentJob.day">
+                            <option value="0">日</option>
+                            <option value="1">1号</option>
+                            <option value="2">2号</option>
+                            <option value="3">3号</option>
+                            <option value="4">4号</option>
+                            <option value="5">5号</option>
+                            <option value="6">6号</option>
+                            <option value="7">7号</option>
+                            <option value="8">8号</option>
+                            <option value="9">9号</option>
+                            <option value="10">10号</option>
+                            <option value="11">11号</option>
+                            <option value="12">12号</option>
+                            <option value="13">13号</option>
+                            <option value="14">14号</option>
+                            <option value="15">15号</option>
+                            <option value="16">16号</option>
+                            <option value="17">17号</option>
+                            <option value="18">18号</option>
+                            <option value="19">19号</option>
+                            <option value="20">20号</option>
+                            <option value="21">21号</option>
+                            <option value="22">22号</option>
+                            <option value="23">23号</option>
+                            <option value="24">24号</option>
+                            <option value="25">25号</option>
+                            <option value="26">26号</option>
+                            <option value="27">27号</option>
+                            <option value="28">28号</option>
+                            <option value="29">29号</option>
+                            <option value="30">30号</option>
+                            <option value="31">31号</option>
+                          </select>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -165,13 +287,16 @@ const data = () => {
         newJob: {
             productId: 0,
             quantity: 1,
-            date: null
+            month: null,
+            day: null
         },
 
         currentJob: {
+            id: 0,
             productId: 0,
             quantity: 1,
-            date: null
+            month: null,
+            day: null
         },
 
         addingJob: false,
@@ -238,6 +363,7 @@ const methods = {
 
         this.$http.post('job/add', {
             ...this.newJob,
+            ...this.currentDate,
             workerId: this.workerId
         }).then(response => {
             if (response.data.success) {
@@ -265,33 +391,77 @@ const methods = {
 
     editJob(job) {
         this.activeEditJobDialog = true;
+        this.currentJob.id = job.id;
         this.currentJob.productId = job.product_id;
         this.currentJob.quantity = job.quantity;
-        this.currentJob.date = job.job_date;
+
+        let currentJobDate = this.getDate(job.job_date);
+        this.currentJob.month = currentJobDate.month + 1;
+        this.currentJob.day = currentJobDate.day;
     },
 
     updateJob(job) {
+        this.editingJob = true;
 
+        this.$http.post('job/update', {
+            ...this.currentJob,
+            workerId: this.workerId
+        }).then(response => {
+            if (response.data.success) {
+                this.resetEditJob();
+                this.loadJobs();
+            }
+        }).finally(() => {
+            this.editingJob = false;
+        });
     },
 
     resetEditJob() {
         this.activeEditJobDialog = false;
+
+        this.currentJob.id = 0;
         this.currentJob.productId = 0;
         this.currentJob.quantity = 1;
-        this.currentJob.date = null;
+        this.currentJob.month = null;
+        this.currentJob.day = null;
     },
 
     resetNewJob() {
         this.activeNewJobDialog = false;
         this.newJob.productId = 0;
         this.newJob.quantity = 1;
-        this.newJob.date = null;
+
+        let currentDate = this.getDate();
+        this.setNewJobDate(currentDate);
     },
 
     loadProducts() {
         this.$http.get('products/all').then(response => {
             this.products = response.data;
         });
+    },
+
+    getDate(dateString) {
+        let d;
+
+        if (dateString) {
+            d = new Date(dateString);
+        }else {
+            d = new Date();
+        }
+
+        let month = d.getMonth();
+        let day = d.getDate();
+
+        return {
+            month,
+            day
+        };
+    },
+
+    setNewJobDate(currentDate) {
+        this.newJob.month = currentDate.month + 1;
+        this.newJob.day = currentDate.day;
     }
 };
 
@@ -303,10 +473,9 @@ const components = {
 const mounted = function() {
     this.loadProducts();
 
-    let d = new Date();
-    let month = d.getMonth();
-
-    this.month = month + 1;
+    let currentDate = this.getDate();
+    this.setNewJobDate(currentDate);
+    this.month = currentDate.month + 1;
 };
 
 export default {

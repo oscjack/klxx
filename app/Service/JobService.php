@@ -50,12 +50,15 @@ class JobService
         $job->quantity = $data['quantity'];
 
         $product = Product::find($data['product_id']);
-
         if ( ! $product) {
             throw new InvalidArgumentException('产品不存在');
         }
-
         $job->amount = $product->fee * $data['quantity'];
+
+        if (isset($data['month']) && isset($data['day'])) {
+            $date_string = date('Y') . '-' . $data['month'] . '-' . $data['day'];
+            $job->updated_at = date('Y-m-d', strtotime($date_string));
+        }
 
         if ( ! $job->save()) {
             throw new InvalidArgumentException('保存人工费失败');

@@ -58,3 +58,4 @@ Route::post('/worker/update', 'WorkerController@save');
 Route::get('/jobs', 'JobController@index');
 Route::post('/job/add', 'JobController@save');
 Route::post('/job/remove', 'JobController@remove');
+Route::post('/job/update', 'JobController@save');
