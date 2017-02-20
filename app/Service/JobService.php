@@ -23,6 +23,7 @@ class JobService
             ->where('jobs.worker_id', '=', $worker_id)
             ->whereYear('jobs.updated_at', date("Y"))
             ->whereMonth('jobs.updated_at', $month)
+            ->orderBy('jobs.updated_at')
             ->select(
                 'jobs.id',
                 'jobs.product_id',

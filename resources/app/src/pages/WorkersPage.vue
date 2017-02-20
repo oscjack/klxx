@@ -5,7 +5,7 @@
     <page>
         <div class="row">
             <div class="col-md-5">
-                <worker-list v-on:active="activeWorker"></worker-list>
+                <worker-list v-on:active="activeWorker" v-on:reset="resetWorker"></worker-list>
             </div>
 
             <div class="col-md-7">
@@ -42,6 +42,11 @@ const methods = {
     activeWorker(worker) {
         this.activedWorkerId = worker.id;
         this.activedWorkerName = worker.name;
+    },
+
+    resetWorker() {
+        this.activedWorkerId = null;
+        this.activedWorkerName = null;
     }
 };
 

@@ -4,6 +4,7 @@ namespace App\Service;
 
 use InvalidArgumentException;
 use App\Worker;
+use App\Job;
 
 class WorkerService
 {
@@ -37,6 +38,8 @@ class WorkerService
     {
         try {
             $worker = Worker::find($this->worker_id);
+
+            Job::where('worker_id', '=', $this->worker_id)->delete();
 
             if ( ! $worker->delete()) {
                 throw new InvalidArgumentException('失败：不能删除该员工');

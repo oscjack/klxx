@@ -121,6 +121,8 @@ const methods = {
         }).then(response => {
             if (response.data.success) {
                 this.loadWorkers();
+
+                this.$emit('reset');
             }
         }).finally(() => {
             this.loadingWorkerList = false;
